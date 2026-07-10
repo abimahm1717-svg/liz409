@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barber Andy | Barbería Premium</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{
+    :root {
       --bg: #08080a;
       --card: #121214;
       --accent: #e63946;
@@ -838,7 +838,7 @@
             <td>Tijera y máquina, acabado tradicional y limpio</td>
             <td class="precio">$150 MXN</td>
             <td class="horario">30 min</td>
-            <td><img src="imagenes/corte clasico 1 (2).jpg" class="img-corte"></td>
+            <td><img src="imagenes/corte clasico 1 (2).jpg" alt="Corte Clásico" class="img-corte"></td>
           </tr>
           <tr>
             <td>
@@ -920,7 +920,7 @@
   <section class="antes-despues reveal" id="antes-despues">
     <h2>Resultados Reales</h2>
     <div class="comparison" id="comparison">
-      <img src="imagenes/antes despues.jpg" class="img-before">
+      <img src="imagenes/antes despues.jpg" alt="Antes del corte" class="img-before">
       <img src="imagenes/antes despues.jpg" alt="Después del corte" class="img-after">
       <div class="slider" id="slider">
         <div class="slider-handle"><i class="fas fa-arrows-left-right"></i></div>
@@ -933,15 +933,14 @@
   <section id="galeria" class="galeria reveal">
     <h2>Galería de Estilos</h2>
     <div class="carousel">
-      <!-- RUTAS DE IMÁGENES TAL CUAL LAS TENÍAS -->
       <img src="imagenes/cortes clasicos 2.webp" class="active" alt="Corte clásico">
       <img src="imagenes/corte clasico 1 (2).jpg" alt="Corte clásico 2">
       <img src="imagenes/corte fade moderno 1.png" alt="Fade moderno">
       <img src="imagenes/fade 2.webp" alt="Fade moderno 2">
       <img src="imagenes/diceño creativo 1.jpg" alt="Diseño creativo">
       <img src="imagenes/diceño creativo 2.webp" alt="Diseño creativo 2">
-      <button class="nav prev"><i class="fas fa-chevron-left"></i></button>
-      <button class="nav next"><i class="fas fa-chevron-right"></i></button>
+      <button class="nav prev" type="button"><i class="fas fa-chevron-left"></i></button>
+      <button class="nav next" type="button"><i class="fas fa-chevron-right"></i></button>
       <div class="caption" id="carousel-caption">Corte Clásico</div>
     </div>
   </section>
@@ -955,7 +954,7 @@
     <div class="mision-vision">
       <div class="card-para">
         <h3>✨ Misión</h3>
-        <p>Ofrecer servicios integrales de estética y cuidado personal de la más alta calidad, combinando técnicas innovadoras, productos de excelencia y un trato humano cálido y respetuoso.</p>
+        <p>Ofrecer servicios integrales de estética y cuidado personal de la más alta calidad, combining técnicas innovadoras, productos de excelencia y un trato humano cálido y respetuoso.</p>
       </div>
       <div class="card-para">
         <h3>🌟 Visión</h3>
@@ -967,122 +966,4 @@
   <section id="ubicacion" class="reveal">
     <h2>📍 ¿Dónde encontrarnos?</h2>
     <p>San José Octeyuco, Jilotepec de Molina Enríquez, Estado de México</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.466077837568!2d-99.61100362395614!3d19.946892181445378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2494414c99793%3A0xdbea954ab7672d6d!2sSan%20Jos%C3%A9%20Octeyuco!5e0!3m2!1sen!2smx!4v1781308852801!5m2!1sen!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </section>
-
-  <section id="contacto" class="reveal">
-    <form action="http://localhost:3000/guardar" method="POST">
-      <h1>📩 Formulario de Contacto</h1>
-      <label>Nombre completo:</label>
-      <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
-      <label>Correo electrónico:</label>
-      <input type="email" name="correo" required placeholder="Ej: juan@correo.com">
-      <label>Tu mensaje o consulta:</label>
-      <textarea name="mensaje" rows="5" required placeholder="Escribe aquí tu duda o comentario..."></textarea>
-      <button type="submit">Enviar Mensaje</button>
-    </form>
-  </section>
-
-  <footer>
-    <div class="redes-sociales">
-      <a href="https://www.tiktok.com/" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://wa.me/525512345678" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/TuPagina" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/TuCuenta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>📍 San José Octeyuco, Jilotepec, Estado de México</p>
-    <p>📞 Teléfono: 555-123-456</p>
-    <p>🕒 Horario: Lunes a Sábado de 10:00 AM a 8:00 PM</p>
-    <p>© 2026 Barber Andy - Todos los derechos reservados</p>
-  </footer>
-
-  <a href="https://wa.me/525512345678" target="_blank" class="social-float whatsapp-float" title="Contáctanos por WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-  <a href="https://www.facebook.com/TuPagina" target="_blank" class="social-float facebook-float" title="Visita nuestro Facebook">
-    <i class="fab fa-facebook"></i>
-  </a>
-  <a href="https://www.instagram.com/TuCuenta" target="_blank" class="social-float instagram-float" title="Síguenos en Instagram">
-    <i class="fab fa-instagram"></i>
-  </a>
-
-  <script>
-    // CARRUSEL CORREGIDO Y FUNCIONANDO
-    const slides = [
-      {caption: 'Corte Clásico'},
-      {caption: 'Corte Clásico'},
-      {caption: 'Fade Moderno'},
-      {caption: 'Fade Moderno'},
-      {caption: 'Diseño Creativo'},
-      {caption: 'Diseño Creativo'}
-    ];
-
-    let idx = 0;
-    const imgs = document.querySelectorAll('.carousel img');
-    const prev = document.querySelector('.prev');
-    const next = document.querySelector('.next');
-    const caption = document.getElementById('carousel-caption');
-
-    function show(i){
-      imgs.forEach(img => img.classList.remove('active'));
-      imgs[i].classList.add('active');
-      caption.textContent = slides[i].caption;
-    }
-
-    // Botones manuales
-    prev.addEventListener('click', () => {
-      idx = (idx - 1 + slides.length) % slides.length;
-      show(idx);
-    });
-
-    next.addEventListener('click', () => {
-      idx = (idx + 1) % slides.length;
-      show(idx);
-    });
-
-    // Cambio automático cada 4.5 segundos
-    setInterval(() => {
-      idx = (idx + 1) % slides.length;
-      show(idx);
-    }, 4500);
-
-    // Control deslizante Antes/Después
-    const comparison = document.getElementById('comparison');
-    const imgAfter = document.querySelector('.img-after');
-    const slider = document.getElementById('slider');
-    let isDragging = false;
-
-    function updateSlider(x) {
-      const rect = comparison.getBoundingClientRect();
-      let percentage = ((x - rect.left) / rect.width) * 100;
-      percentage = Math.max(0, Math.min(100, percentage));
-      imgAfter.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
-      slider.style.left = percentage + '%';
-    }
-
-    slider.addEventListener('mousedown', () => isDragging = true);
-    window.addEventListener('mouseup', () => isDragging = false);
-    window.addEventListener('mousemove', (e) => {
-      if (isDragging) updateSlider(e.clientX);
-    });
-
-    slider.addEventListener('touchstart', () => isDragging = true);
-    window.addEventListener('touchend', () => isDragging = false);
-    window.addEventListener('touchmove', (e) => {
-      if (isDragging) updateSlider(e.touches[0].clientX);
-    });
-
-    // Animación al hacer scroll
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {threshold: 0.15});
-
-    revealElements.forEach(el => observer.observe(el));
-  </script>
-</body>
-</html>
+    <iframe src="
