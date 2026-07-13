@@ -1,1084 +1,645 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Barber Andy | Barbería Premium</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root {
-      --bg: #08080a;
-      --card: #121214;
-      --accent: #e63946;
-      --accent-2: #ffd166;
-      --text: #f8f8f8;
-      --muted: #b8b8b8;
-      --gradient: linear-gradient(135deg, #e63946 0%, #ff6b81 100%);
-      --gradient-soft: linear-gradient(135deg, rgba(230,57,70,0.15) 0%, rgba(255,209,102,0.1) 100%);
-      --border: rgba(230,57,70,0.25);
-      --shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    * {box-sizing: border-box; margin: 0; padding: 0;}
-    html {scroll-behavior: smooth; font-size: 16px;}
-
-    body {
-      font-family: 'Segoe UI', Inter, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* Animaciones generales */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Encabezado */
-    header {
-      background: rgba(8,8,10,0.9);
-      backdrop-filter: blur(15px);
-      padding: 16px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: clamp(32px, 5vw, 42px);
-      font-weight: 900;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      filter: drop-shadow(0 2px 8px rgba(230,57,70,0.3));
-    }
-
-    .tag {
-      font-size: 11px;
-      color: #fff;
-      background: rgba(230,57,70,0.25);
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      font-weight: 600;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 8px 14px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      position: relative;
-      font-size: 15px;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-      border-radius: 2px;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-      transform: translateY(-2px);
-      background: rgba(230,57,70,0.08);
-    }
-
-    nav a:hover::after {width: 70%;}
-
-    /* Sección Principal */
-    .hero {
-      text-align: center;
-      padding: 120px 20px 100px;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(230,57,70,0.2) 0%, transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(255,209,102,0.15) 0%, transparent 55%),
-        linear-gradient(180deg, #08080a 0%, #101012 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: rgba(230,57,70,0.1);
-      border-radius: 50%;
-      top: -100px;
-      left: -100px;
-      filter: blur(60px);
-    }
-
-    .hero h1 {
-      font-size: clamp(44px, 7vw, 72px);
-      line-height: 1.1;
-      margin: 0 0 20px;
-      background: linear-gradient(90deg, #ffffff 0%, #ffd9d9 50%, #fff3c0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
-    }
-
-    .hero p {
-      font-size: 19px;
-      color: var(--muted);
-      max-width: 750px;
-      margin: 0 auto 35px;
-      line-height: 1.8;
-    }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 32px;
-      border-radius: 999px;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 700;
-      font-size: 17px;
-      text-decoration: none;
-      box-shadow: 0 10px 28px rgba(230,57,70,0.45);
-      transition: all 0.4s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .cta:hover {
-      transform: translateY(-4px) scale(1.06);
-      box-shadow: 0 15px 38px rgba(230,57,70,0.6);
-    }
-
-    /* Secciones Generales */
-    .sections {padding: 70px 20px;}
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 28px;
-      max-width: 1250px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: rgba(18,18,20,0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 32px 24px;
-      text-align: center;
-      border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent);
-      box-shadow: 0 18px 35px rgba(230,57,70,0.28);
-      background: rgba(22,22,24,0.9);
-    }
-
-    .card h2 {
-      font-size: 24px;
-      margin-bottom: 14px;
-      color: var(--accent-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .card p {color: var(--muted); font-size: 16px; line-height: 1.7;}
-
-    .slogan {
-      text-align: center;
-      font-size: clamp(26px, 5vw, 32px);
-      font-weight: 700;
-      margin: 60px auto;
-      max-width: 900px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding: 0 20px;
-    }
-
-    /* Precios y Horarios */
-    .precios-horarios {
-      max-width: 1250px;
-      margin: 90px auto;
-      padding: 0 20px;
-    }
-
-    .precios-horarios h2 {
-      text-align: center;
-      font-size: clamp(32px, 5vw, 40px);
-      margin-bottom: 50px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .precios-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 35px;
-      align-items: start;
-    }
-
-    .tabla-precios {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: rgba(18,18,20,0.95);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .tabla-precios thead {
-      background: var(--gradient);
-    }
-
-    .tabla-precios th {
-      padding: 20px 16px;
-      text-align: left;
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .tabla-precios td {
-      padding: 18px 16px;
-      border-bottom: 1px solid rgba(230,57,70,0.12);
-      color: var(--text);
-      font-size: 16px;
-      vertical-align: middle;
-      transition: background 0.2s ease;
-    }
-
-    .tabla-precios tbody tr:hover {
-      background: rgba(230,57,70,0.08);
-    }
-
-    .tabla-precios tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .tabla-precios .precio {
-      color: var(--accent-2);
-      font-weight: 700;
-      font-size: 19px;
-      white-space: nowrap;
-    }
-
-    .tabla-precios .categoria {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    .tabla-precios .dia {
-      font-weight: 600;
-      font-size: 17px;
-    }
-
-    .tabla-precios .horario {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .tabla-precios .img-corte {
-      width: 85px;
-      height: 85px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid var(--accent);
-      transition: transform 0.3s ease;
-      background: #222;
-    }
-
-    .tabla-precios .img-corte:hover {
-      transform: scale(1.1);
-    }
-
-    .badge-nuevo {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 10px;
-      padding: 3px 10px;
-      border-radius: 999px;
-      margin-left: 10px;
-      font-weight: 700;
-      vertical-align: middle;
-      box-shadow: 0 2px 6px rgba(230,57,70,0.4);
-    }
-
-    /* Quiénes Somos */
-    .quienes-somos{
-      max-width: 1150px;
-      margin: 70px auto;
-      padding: 60px 40px;
-      background: linear-gradient(145deg, rgba(18,18,20,0.9), rgba(28,28,30,0.9));
-      border-radius: 28px;
-      border: 1px solid rgba(230,57,70,0.2);
-      box-shadow: var(--shadow);
-    }
-
-    .quienes-somos h2{
-      text-align: center;
-      font-size: clamp(34px, 6vw, 42px);
-      margin-bottom: 15px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitulo{
-      text-align: center;
-      color: var(--muted);
-      margin-bottom: 35px;
-      font-size: 19px;
-    }
-
-    .quienes-somos p{
-      text-align: justify;
-      line-height: 1.9;
-      font-size: 17px;
-      color: #e5e5e5;
-      margin-bottom: 20px;
-    }
-
-    .mision-vision{
-      display: flex;
-      gap: 30px;
-      margin-top: 45px;
-      flex-wrap: wrap;
-    }
-
-    .card-para{
-      flex: 1;
-      min-width: 320px;
-      padding: 32px;
-      border-radius: 20px;
-      background: rgba(8,8,10,0.7);
-      border-left: 4px solid var(--accent);
-      transition: all 0.4s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    }
-
-    .card-para:hover{
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(230,57,70,0.3);
-      border-left-color: var(--accent-2);
-    }
-
-    .card-para h3{
-      color: var(--accent-2);
-      font-size: 26px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* Galería / Carrusel */
-    .galeria {padding: 70px 20px;}
-
-    .galeria h2 {
-      text-align: center;
-      font-size: clamp(32px, 5vw, 40px);
-      margin-bottom: 40px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .carousel {
-      position: relative;
-      max-width: 650px;
-      margin: 0 auto;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 2px solid rgba(230,57,70,0.3);
-      height: 380px;
-      background: #1a1a1e;
-    }
-
-    .carousel img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: none;
-      transition: opacity 0.5s ease;
-    }
-
-    .carousel img.active {display: block;}
-
-    .nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(12px);
-      border: none;
-      color: #fff;
-      font-size: 30px;
-      padding: 14px 18px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-
-    .nav:hover {
-      background: var(--accent);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .prev {left: 20px;}
-    .next {right: 20px;}
-
-    .caption {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(12px);
-      padding: 10px 24px;
-      border-radius: 999px;
-      font-size: 16px;
-      font-weight: 600;
-      z-index: 10;
-    }
-
-    /* Antes y Después */
-    .antes-despues {
-      padding: 90px 20px;
-      max-width: 950px;
-      margin: 0 auto;
-    }
-
-    .antes-despues h2 {
-      text-align: center;
-      font-size: clamp(32px, 5vw, 40px);
-      margin-bottom: 45px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .comparison {
-      position: relative;
-      width: 100%;
-      height: 520px;
-      overflow: hidden;
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      border: 2px solid rgba(230,57,70,0.25);
-      background: #1a1a1e;
-    }
-
-    .comparison img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .img-before {z-index: 1;}
-    .img-after {
-      z-index: 2;
-      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-      transition: clip-path 0.1s linear;
-    }
-
-    .slider {
-      position: absolute;
-      z-index: 3;
-      left: 50%;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent);
-      cursor: ew-resize;
-      transform: translateX(-50%);
-      box-shadow: 0 0 15px var(--accent);
-    }
-
-    .slider-handle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 55px;
-      height: 55px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 22px;
-      box-shadow: 0 6px 20px rgba(230,57,70,0.6);
-      border: 2px solid #fff;
-    }
-
-    .label {
-      position: absolute;
-      top: 25px;
-      padding: 10px 20px;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(12px);
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 16px;
-      z-index: 4;
-    }
-
-    .label-before {left: 25px; color: var(--muted);}
-    .label-after {right: 25px; color: var(--accent-2);}
-
-    /* Formulario */
-    form {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 35px;
-      background: rgba(18,18,20,0.9);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    form h1 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: var(--accent-2);
-      font-size: 24px;
-    }
-
-    form label {
-      display: block;
-      margin: 15px 0 8px;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(10,10,12,0.8);
-      color: var(--text);
-      font-size: 15px;
-      transition: border 0.3s ease;
-    }
-
-    form input:focus, form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(230,57,70,0.2);
-    }
-
-    form button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      border-radius: 8px;
-      border: none;
-      background: var(--gradient);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    form button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(230,57,70,0.4);
-    }
-
-    /* Ubicación */
-    #ubicacion {
-      max-width: 1100px;
-      margin: 70px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    #ubicacion h2 {
-      font-size: clamp(30px, 5vw, 38px);
-      margin-bottom: 25px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    #ubicacion p {
-      margin-bottom: 25px;
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    #ubicacion iframe {
-      width: 100%;
-      height: 480px;
-      border-radius: 20px;
-      border: 2px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    /* Pie de página */
-    footer {
-      background: #050505;
-      color: var(--muted);
-      text-align: center;
-      padding: 50px 20px;
-      margin-top: 70px;
-      border-top: 1px solid var(--border);
-    }
-
-    .redes-sociales {
-      margin-bottom: 25px;
-    }
-
-    .redes-sociales a {
-      margin: 0 15px;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .redes-sociales i {
-      font-size: 2.3rem;
-      color: var(--muted);
-      transition: all 0.3s ease;
-    }
-
-    .redes-sociales a:hover {
-      transform: translateY(-6px) scale(1.2);
-    }
-
-    .redes-sociales a:hover i {
-      color: var(--accent);
-    }
-
-    /* Botones flotantes */
-    .social-float {
-      position: fixed;
-      width: 58px;
-      height: 58px;
-      right: 25px;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 29px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
-      z-index: 999;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-decoration: none;
-    }
-
-    .whatsapp-float {
-      bottom: 25px;
-      background-color: #25D366;
-    }
-
-    .facebook-float {
-      bottom: 90px;
-      background-color: #1877F2;
-    }
-
-    .instagram-float {
-      bottom: 155px;
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
-
-    .social-float:hover {
-      transform: scale(1.15);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.6);
-      color: white;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav {gap: 10px;}
-      nav a {padding: 6px 10px; font-size: 14px;}
-      .hero {padding: 80px 15px 60px;}
-      .quienes-somos {padding: 35px 20px;}
-      .comparison {height: 380px;}
-      .carousel {height: 280px;}
-      .tabla-precios th, .tabla-precios td {padding: 12px 8px; font-size: 14px;}
-      .tabla-precios .precio {font-size: 17px;}
-      .tabla-precios .img-corte {width: 65px; height: 65px;}
-      .social-float {width: 52px; height: 52px; font-size: 25px; right: 15px;}
-      .whatsapp-float {bottom: 20px;}
-      .facebook-float {bottom: 80px;}
-      .instagram-float {bottom: 140px;}
-      #ubicacion iframe {height: 320px;}
-      .mision-vision {flex-direction: column;}
-    }
-  </style>
+   <link rel="stylesheet" href="index.css">   
 </head>
+
 <body>
+
   <header>
+
     <div class="brand">
+
       <div class="logo">✂ Barber Andy ✂</div>
+
       <span class="tag">Premium</span>
+
     </div>
+
     <nav>
+
       <a href="#inicio">Inicio</a>
+
       <a href="#servicios">Servicios</a>
+
       <a href="#precios">Precios</a>
+
       <a href="#antes-despues">Resultados</a>
+
       <a href="#galeria">Galería</a>
+
       <a href="#quienes-somos">Quiénes Somos</a>
+
       <a href="#contacto">Contacto</a>
+
       <a href="#ubicacion">Ubicación</a>
+
     </nav>
+
   </header>
 
+
+
   <section class="hero" id="inicio">
+
     <h1>"Donde el estilo se convierte en arte"</h1>
+
     <p>Cortes únicos, afeitados precisos y un ambiente acogedor donde el estilo clásico se encuentra con la creatividad moderna. ¡Ven y renueva tu imagen con nosotros!</p>
+
     <a href="#servicios" class="cta"><i class="fas fa-scissors"></i> VER SERVICIOS</a>
+
   </section>
+
+
 
   <section class="sections reveal" id="servicios">
+
     <div class="services">
+
       <div class="card">
+
         <h2><i class="fas fa-cut"></i> Cortes Clásicos</h2>
+
         <p>Estilo tradicional con un toque moderno y precisión milimétrica, adaptado a tu tipo de cabello.</p>
+
       </div>
+
       <div class="card">
+
         <h2><i class="fas fa-spa"></i> Afeitados Premium</h2>
+
         <p>Con toallas calientes, aceites esenciales y productos de barbería profesional para tu comodidad.</p>
+
       </div>
+
       <div class="card">
+
         <h2><i class="fas fa-paint-brush"></i> Diseños Creativos</h2>
+
         <p>Líneas, degradados y estilos personalizados que expresan tu personalidad al máximo.</p>
+
       </div>
+
       <div class="card">
+
         <h2><i class="fas fa-magic"></i> Color y Estilo</h2>
+
         <p>Aplicación de tintes y técnicas modernas de coloración con productos de alta calidad.</p>
+
       </div>
+
     </div>
+
   </section>
 
+
+
   <section class="precios-horarios reveal" id="precios">
+
     <h2>Servicios y Horarios</h2>
+
     <div class="precios-container">
+
       <table class="tabla-precios">
+
         <thead>
+
           <tr>
+
             <th>Servicio</th>
+
             <th>Descripción</th>
+
             <th>Precio</th>
+
             <th>Duración</th>
+
             <th>Vista</th>
+
           </tr>
+
         </thead>
+
         <tbody>
+
           <tr>
+
             <td>
+
               <span class="categoria">Corte</span>
+
               <span class="dia">Clásico</span>
+
             </td>
+
             <td>Tijera y máquina, acabado tradicional y limpio</td>
+
             <td class="precio">$150 MXN</td>
+
             <td class="horario">30 min</td>
-            <td><img src="imagenes/corte clasico 1 (2).jpg" alt="Corte Clásico" class="img-corte"></td>
+
+            <td><img src="imagenes/corte clasico 1 (2).jpg" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Corte</span>
+
               <span class="dia">Fade / Desvanecido</span>
+
               <span class="badge-nuevo">POPULAR</span>
+
             </td>
+
             <td>Skin fade, medio o alto, con líneas definidas</td>
+
             <td class="precio">$180 MXN</td>
+
             <td class="horario">40 min</td>
+
             <td><img src="imagenes/fade.webp" alt="Corte Fade" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Barba</span>
+
               <span class="dia">Afeitado Premium</span>
+
             </td>
+
             <td>Toalla caliente, aceite, navaja y bálsamo hidratante</td>
+
             <td class="precio">$120 MXN</td>
+
             <td class="horario">25 min</td>
+
             <td><img src="imagenes/afeitado premiun.jpg" alt="Afeitado Premium" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Combo</span>
+
               <span class="dia">Corte + Barba</span>
+
             </td>
+
             <td>Servicio completo con acabado de lujo y cuidado total</td>
+
             <td class="precio">$280 MXN</td>
+
             <td class="horario">60 min</td>
+
             <td><img src="imagenes/barba y corte.jpg" alt="Combo Corte + Barba" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Diseño</span>
+
               <span class="dia">Grecas / Líneas</span>
+
             </td>
+
             <td>Dibujos y estilos personalizados a tu gusto</td>
+
             <td class="precio">$200 MXN</td>
+
             <td class="horario">45 min</td>
+
             <td><img src="imagenes/diceño creativo 2.webp" alt="Diseño Creativo" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Color</span>
+
               <span class="dia">Tinte / Mechas</span>
+
             </td>
+
             <td>Aplicación profesional + matizado y protección capilar</td>
+
             <td class="precio">$350 MXN</td>
+
             <td class="horario">90 min</td>
+
             <td><img src="imagenes/tintes.jpeg" alt="Tinte y Mechas" class="img-corte"></td>
+
           </tr>
+
           <tr>
+
             <td>
+
               <span class="categoria">Niños</span>
+
               <span class="dia">Corte Infantil</span>
+
             </td>
+
             <td>Menores de 12 años, corte cómodo y rápido</td>
+
             <td class="precio">$120 MXN</td>
+
             <td class="horario">25 min</td>
+
             <td><img src="imagenes/corte niño.jpg" alt="Corte Infantil" class="img-corte"></td>
+
           </tr>
+
           <tr style="background: rgba(255,209,102,0.08);">
+
             <td colspan="2">
+
               <span class="categoria">Horario de Atención</span>
+
               <span class="dia">Lunes a Sábado</span>
+
             </td>
+
             <td colspan="3" class="horario" style="text-align: center; font-weight: 700; color: var(--accent-2); font-size: 18px;">
+
               10:00 AM - 8:00 PM
+
             </td>
+
           </tr>
+
         </tbody>
+
       </table>
+
     </div>
+
   </section>
+
+
 
   <p class="slogan reveal">💈 Tu estilo, nuestra pasión 💈</p>
 
+
+
   <section class="antes-despues reveal" id="antes-despues">
+
     <h2>Resultados Reales</h2>
+
     <div class="comparison" id="comparison">
-      <img src="imagenes/antes despues.jpg" alt="Antes del corte" class="img-before">
+
+      <img src="imagenes/antes despues.jpg" class="img-before">
+
       <img src="imagenes/antes despues.jpg" alt="Después del corte" class="img-after">
+
       <div class="slider" id="slider">
+
         <div class="slider-handle"><i class="fas fa-arrows-left-right"></i></div>
+
       </div>
+
       <div class="label label-before">ANTES</div>
+
       <div class="label label-after">DESPUÉS</div>
+
     </div>
+
   </section>
+
+
 
   <section id="galeria" class="galeria reveal">
+
     <h2>Galería de Estilos</h2>
+
     <div class="carousel">
+
+      <!-- RUTAS DE IMÁGENES TAL CUAL LAS TENÍAS -->
+
       <img src="imagenes/cortes clasicos 2.webp" class="active" alt="Corte clásico">
+
       <img src="imagenes/corte clasico 1 (2).jpg" alt="Corte clásico 2">
+
       <img src="imagenes/corte fade moderno 1.png" alt="Fade moderno">
+
       <img src="imagenes/fade 2.webp" alt="Fade moderno 2">
+
       <img src="imagenes/diceño creativo 1.jpg" alt="Diseño creativo">
+
       <img src="imagenes/diceño creativo 2.webp" alt="Diseño creativo 2">
-      <button class="nav prev" type="button"><i class="fas fa-chevron-left"></i></button>
-      <button class="nav next" type="button"><i class="fas fa-chevron-right"></i></button>
+
+      <button class="nav prev"><i class="fas fa-chevron-left"></i></button>
+
+      <button class="nav next"><i class="fas fa-chevron-right"></i></button>
+
       <div class="caption" id="carousel-caption">Corte Clásico</div>
+
     </div>
+
   </section>
+
+
 
   <section id="quienes-somos" class="quienes-somos reveal">
+
     <h2>Quiénes Somos</h2>
+
     <p class="subtitulo">Más que una barbería, una experiencia completa</p>
+
     <p>Somos un centro de estética dedicado al cuidado integral de tu imagen, tu salud y tu bienestar. Nacimos con la ilusión de crear un espacio único, donde la atención personalizada y la calidad se unen para ofrecerte una experiencia placentera y transformadora.</p>
+
     <p>Cada persona es única, por eso escuchamos, asesoramos y diseñamos estilos adaptados a tus necesidades y deseos. Tu confianza y satisfacción son nuestra mayor prioridad.</p>
 
+
+
     <div class="mision-vision">
+
       <div class="card-para">
+
         <h3>✨ Misión</h3>
-        <p>Ofrecer servicios integrales de estética y cuidado personal de la más alta calidad, combining técnicas innovadoras, productos de excelencia y un trato humano cálido y respetuoso.</p>
+
+        <p>Ofrecer servicios integrales de estética y cuidado personal de la más alta calidad, combinando técnicas innovadoras, productos de excelencia y un trato humano cálido y respetuoso.</p>
+
       </div>
+
       <div class="card-para">
+
         <h3>🌟 Visión</h3>
+
         <p>Ser la barbería de referencia en nuestra comunidad, reconocida por la excelencia en nuestros servicios, la innovación constante y el compromiso total con el bienestar de cada cliente.</p>
+
       </div>
+
     </div>
+
   </section>
+
+
 
   <section id="ubicacion" class="reveal">
+
     <h2>📍 ¿Dónde encontrarnos?</h2>
+
     <p>San José Octeyuco, Jilotepec de Molina Enríquez, Estado de México</p>
-    <iframe src="https://maps.google.com/maps?q=San%20Jos%C3%A9%20Octeyuco,%20Jilotepec&t=&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.466077837568!2d-99.61100362395614!3d19.946892181445378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2494414c99793%3A0xdbea954ab7672d6d!2sSan%20Jos%C3%A9%20Octeyuco!5e0!3m2!1sen!2smx!4v1781308852801!5m2!1sen!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
   </section>
+
+
 
   <section id="contacto" class="reveal">
+
     <form action="http://localhost:3000/guardar" method="POST">
+
       <h1>📩 Formulario de Contacto</h1>
-      <label for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez">
-      <label for="correo">Correo electrónico:</label>
-      <input type="email" id="correo" name="correo" required placeholder="Ej: juan@correo.com">
-      <label for="mensaje">Tu mensaje o consulta:</label>
-      <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe aquí tu duda o comentario..."></textarea>
+
+      <label>Nombre completo:</label>
+
+      <input type="text" name="nombre" required placeholder="Ej: Juan Pérez">
+
+      <label>Correo electrónico:</label>
+
+      <input type="email" name="correo" required placeholder="Ej: juan@correo.com">
+
+      <label>Tu mensaje o consulta:</label>
+
+      <textarea name="mensaje" rows="5" required placeholder="Escribe aquí tu duda o comentario..."></textarea>
+
       <button type="submit">Enviar Mensaje</button>
+
     </form>
+
   </section>
 
+
+
   <footer>
+
     <div class="redes-sociales">
-      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://wa.me/525512345678" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.facebook.com/TuPagina" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/TuCuenta" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+
+      <a href="https://www.tiktok.com/" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+
+      <a href="https://wa.me/525512345678" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+      <a href="https://www.facebook.com/TuPagina" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+
+      <a href="https://www.instagram.com/TuCuenta" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+
     </div>
+
     <p>📍 San José Octeyuco, Jilotepec, Estado de México</p>
+
     <p>📞 Teléfono: 555-123-456</p>
+
     <p>🕒 Horario: Lunes a Sábado de 10:00 AM a 8:00 PM</p>
+
     <p>© 2026 Barber Andy - Todos los derechos reservados</p>
+
   </footer>
 
-  <a href="https://wa.me/525512345678" target="_blank" rel="noopener" class="social-float whatsapp-float" title="Contáctanos por WhatsApp">
+
+
+  <a href="https://wa.me/525512345678" target="_blank" class="social-float whatsapp-float" title="Contáctanos por WhatsApp">
+
     <i class="fab fa-whatsapp"></i>
+
   </a>
-  <a href="https://www.facebook.com/TuPagina" target="_blank" rel="noopener" class="social-float facebook-float" title="Visita nuestro Facebook">
+
+  <a href="https://www.facebook.com/TuPagina" target="_blank" class="social-float facebook-float" title="Visita nuestro Facebook">
+
     <i class="fab fa-facebook"></i>
+
   </a>
-  <a href="https://www.instagram.com/TuCuenta" target="_blank" rel="noopener" class="social-float instagram-float" title="Síguenos en Instagram">
+
+  <a href="https://www.instagram.com/TuCuenta" target="_blank" class="social-float instagram-float" title="Síguenos en Instagram">
+
     <i class="fab fa-instagram"></i>
+
   </a>
+
+
 
   <script>
+
+    // CARRUSEL CORREGIDO Y FUNCIONANDO
+
     const slides = [
+
       {caption: 'Corte Clásico'},
-      {caption: 'Corte Clásico 2'},
+
+      {caption: 'Corte Clásico'},
+
       {caption: 'Fade Moderno'},
-      {caption: 'Fade Moderno 2'},
+
+      {caption: 'Fade Moderno'},
+
       {caption: 'Diseño Creativo'},
-      {caption: 'Diseño Creativo 2'}
+
+      {caption: 'Diseño Creativo'}
+
     ];
 
+
+
     let idx = 0;
+
     const imgs = document.querySelectorAll('.carousel img');
+
     const prev = document.querySelector('.prev');
+
     const next = document.querySelector('.next');
+
     const caption = document.getElementById('carousel-caption');
 
+
+
     function show(i){
-      if(imgs.length > 0) {
-        imgs.forEach(img => img.classList.remove('active'));
-        imgs[i].classList.add('active');
-        caption.textContent = slides[i].caption;
-      }
+
+      imgs.forEach(img => img.classList.remove('active'));
+
+      imgs[i].classList.add('active');
+
+      caption.textContent = slides[i].caption;
+
     }
+
+
+
+    // Botones manuales
 
     prev.addEventListener('click', () => {
+
       idx = (idx - 1 + slides.length) % slides.length;
+
       show(idx);
+
     });
+
+
 
     next.addEventListener('click', () => {
+
       idx = (idx + 1) % slides.length;
+
       show(idx);
+
     });
+
+
+
+    // Cambio automático cada 4.5 segundos
 
     setInterval(() => {
+
       idx = (idx + 1) % slides.length;
+
       show(idx);
+
     }, 4500);
 
+
+
+    // Control deslizante Antes/Después
+
     const comparison = document.getElementById('comparison');
+
     const imgAfter = document.querySelector('.img-after');
+
     const slider = document.getElementById('slider');
+
     let isDragging = false;
 
+
+
     function updateSlider(x) {
+
       const rect = comparison.getBoundingClientRect();
+
       let percentage = ((x - rect.left) / rect.width) * 100;
+
       percentage = Math.max(0, Math.min(100, percentage));
+
       imgAfter.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+
       slider.style.left = percentage + '%';
+
     }
 
+
+
     slider.addEventListener('mousedown', () => isDragging = true);
+
     window.addEventListener('mouseup', () => isDragging = false);
+
     window.addEventListener('mousemove', (e) => {
+
       if (isDragging) updateSlider(e.clientX);
+
     });
+
+
 
     slider.addEventListener('touchstart', () => isDragging = true);
+
     window.addEventListener('touchend', () => isDragging = false);
+
     window.addEventListener('touchmove', (e) => {
+
       if (isDragging) updateSlider(e.touches[0].clientX);
+
     });
 
+
+
+    // Animación al hacer scroll
+
     const revealElements = document.querySelectorAll('.reveal');
+
     const observer = new IntersectionObserver((entries) => {
+
       entries.forEach(entry => {
+
         if (entry.isIntersecting) {
+
           entry.target.classList.add('active');
+
         }
+
       });
+
     }, {threshold: 0.15});
 
+
+
     revealElements.forEach(el => observer.observe(el));
+
   </script>
+
 </body>
-</html>
+</html> 
+

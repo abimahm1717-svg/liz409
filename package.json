@@ -13,6 +13,14 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.7.3"
-  }
+    "mongoose": "^9.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizbeth12F/estetica_andy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lizbeth12F/estetica_andy/issues"
+  },
+  "homepage": "https://github.com/lizbeth12F/estetica_andy#readme"
 }
